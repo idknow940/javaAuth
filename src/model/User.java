@@ -1,9 +1,9 @@
 package model;
 
 public class User {
-    long id;
-    String usrName;
-    String passWord;
+    private long id;
+    private String usrName;
+    private String passWord;
 
     public long getId() {
         return id;

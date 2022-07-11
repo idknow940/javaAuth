@@ -6,7 +6,7 @@ import java.util.Objects;
 public class Auth {
     int minimumUsrNameLength = 6;
     int minimumPassWordLength = 8;
-    String[][] usrMatrix__ = new String[100][3];
+    String[][] usrMatrix = new String[100][3];
 
     public boolean register(String usrName, String passWord) {
         if (usrName.length() >= minimumUsrNameLength && passWord.length() >= minimumPassWordLength) {
@@ -17,7 +17,7 @@ public class Auth {
     }
 
     public boolean login(String usrName, String passWord) {
-        for (String[] matrix : usrMatrix__) {
+        for (String[] matrix : usrMatrix) {
             for (int j = 0; j < matrix.length; j++) {
                 if (Objects.equals(matrix[1], usrName) && Objects.equals(matrix[2], passWord)) {
                     return true;
@@ -29,13 +29,13 @@ public class Auth {
 
     public void addToUsrMatrix(String usrName, String passWord) {
         User usr = new User();
-        for (int i = 0; i < usrMatrix__.length; i++) {
-            if (Arrays.equals(usrMatrix__[i], new String[]{null, null, null}) || Objects.equals(usrMatrix__[i][1], usrName)) {
-                for (String ignored : usrMatrix__[i]) {
+        for (int i = 0; i < usrMatrix.length; i++) {
+            if (Arrays.equals(usrMatrix[i], new String[]{null, null, null}) || Objects.equals(usrMatrix[i][1], usrName)) {
+                for (String ignored : usrMatrix[i]) {
                     usr.setId(i);
                     usr.setUsrName(usrName);
                     usr.setPassWord(passWord);
-                    usrMatrix__[i] = new String[]{"" + usr.getId() + "", usr.getUsrName(), usr.getPassWord()};
+                    usrMatrix[i] = new String[]{"" + usr.getId() + "", usr.getUsrName(), usr.getPassWord()};
                 }
                 break;
             }
@@ -43,7 +43,7 @@ public class Auth {
     }
 
     public void printUserMatrix(){
-        for (String[] strings : usrMatrix__) {
+        for (String[] strings : usrMatrix) {
             if (!Arrays.equals(strings, new String[]{null, null, null})){
                 for (String string : strings) {
                     System.out.print(string + " ");
