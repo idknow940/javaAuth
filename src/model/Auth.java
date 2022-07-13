@@ -4,12 +4,12 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Auth {
-    int minimumUsrNameLength = 6;
-    int minimumPassWordLength = 8;
+    private int minimumUsrNameLength;
+    private int minimumPassWordLength;
     String[][] usrMatrix = new String[100][3];
 
     public boolean register(String usrName, String passWord) {
-        if (usrName.length() >= minimumUsrNameLength && passWord.length() >= minimumPassWordLength) {
+        if (usrName.length() >= getMinimumUsrNameLength() && passWord.length() >= getMinimumUsrNameLength()) {
             addToUsrMatrix(usrName, passWord);
             return true;
         }
@@ -51,5 +51,38 @@ public class Auth {
                 System.out.println();
             }
         }
+    }
+
+    public void reinitializeUserMatrix(){
+        String[][] oldMatrix = usrMatrix;
+        String[][] newUsrMatrix = new String[oldMatrix.length*2][oldMatrix[0].length];
+        for (int i = 0; i < oldMatrix.length; i++) {
+            newUsrMatrix[i] = oldMatrix[i];
+        }
+        usrMatrix = newUsrMatrix;
+    }
+
+    public int getMinimumUsrNameLength() {
+        return minimumUsrNameLength;
+    }
+
+    public void setMinimumUsrNameLength(int minimumUsrNameLength) {
+        this.minimumUsrNameLength = minimumUsrNameLength;
+    }
+
+    public int getMinimumPassWordLength() {
+        return minimumPassWordLength;
+    }
+
+    public void setMinimumPassWordLength(int minimumPassWordLength) {
+        this.minimumPassWordLength = minimumPassWordLength;
+    }
+
+    public void printUser(int id) {
+        User n = new User();
+        n.setId(id);
+        n.setUsrName(usrMatrix[id][1]);
+        n.setPassWord(usrMatrix[id][2]);
+        System.out.println(n.info());
     }
 }

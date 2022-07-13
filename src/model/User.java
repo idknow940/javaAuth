@@ -1,15 +1,24 @@
 package model;
 
 public class User {
-    private long id;
+    private int id;
     private String usrName;
     private String passWord;
+    private Auth auth = new Auth();
+
+    public String info() {
+        return "User{" +
+                "id=" + id +
+                ", usrName='" + usrName + '\'' +
+                ", passWord='" + passWord + '\'' +
+                '}';
+    }
 
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -18,7 +27,8 @@ public class User {
     }
 
     public void setUsrName(String usrName) {
-        this.usrName = usrName;
+        if (usrName.length() >= auth.getMinimumUsrNameLength())
+            this.usrName = usrName;
     }
 
     public String getPassWord() {

@@ -1,5 +1,4 @@
 import model.Auth;
-
 public class Main {
     public static void main(String[] args) {
         Auth auth = new Auth();
@@ -10,5 +9,6 @@ public class Main {
         System.out.println("Login Status: " + auth.login("Test02", "testpassword"));
         System.out.println("Login Status: " + auth.login("Test00", "testpasswor"));
         auth.printUserMatrix();
+        auth.printUser(0);
     }
 }
